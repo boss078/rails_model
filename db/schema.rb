@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_21_225726) do
+ActiveRecord::Schema.define(version: 2020_10_22_180435) do
 
   create_table "among_us_players", force: :cascade do |t|
     t.string "nickname"
@@ -40,6 +40,43 @@ ActiveRecord::Schema.define(version: 2020_10_21_225726) do
     t.string "title"
     t.string "streaming_platform"
     t.integer "subscribers"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "films", force: :cascade do |t|
+    t.string "title"
+    t.integer "age_limit"
+    t.time "length"
+    t.integer "rating"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "people", force: :cascade do |t|
+    t.string "name"
+    t.string "surname"
+    t.integer "age"
+    t.date "date_of_birth"
+    t.text "biography"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.float "price"
+    t.integer "left_on_warehouse"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "videogames", force: :cascade do |t|
+    t.string "platform"
+    t.string "title"
+    t.text "description"
+    t.date "release_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
