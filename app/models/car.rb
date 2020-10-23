@@ -7,8 +7,12 @@ class Car < ApplicationRecord
 
     private
     def ensure_model_is_set
+        puts "This method happend before validation"
         if model.nil?
             self.model = brand unless brand.nil?
         end
+    end
+    def process_after_validation
+        puts "This method happend after validation"
     end
 end
