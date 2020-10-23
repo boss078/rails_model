@@ -6,7 +6,7 @@ class PersonTest < ActiveSupport::TestCase
     person.name = "Normal"
     person.surname = "Guy"
     person.age = 25
-    person.date = Time.new(2000, 10, 10)
+    person.date_of_birth = Time.new(2000, 10, 10)
     person.biography = "Something here"
     assert person.valid?, true
   end
@@ -15,7 +15,7 @@ class PersonTest < ActiveSupport::TestCase
     person.name = "Oldest man"
     person.surname = "In th universe"
     person.age = 2000
-    person.date = Time.new(2000, 10, 10)
+    person.date_of_birth = Time.new(2000, 10, 10)
     person.biography = "Something here"
     assert person.invalid?, true
   end

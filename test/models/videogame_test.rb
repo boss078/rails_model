@@ -13,8 +13,7 @@ class VideogameTest < ActiveSupport::TestCase
     videogame = Videogame.new
     videogame.title = "NotCoolTitle"
     videogame.platform = "YBox"
-    videogame.description = "Another shitty exlusive for consoles"
     videogame.release_date = Time.new(2077, 9, 15)
-    assert videogame.invalid?, true
+    assert videogame.valid?, true
   end
 end

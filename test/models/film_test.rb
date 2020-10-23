@@ -15,6 +15,6 @@ class FilmTest < ActiveSupport::TestCase
     film.age_limit = -10
     film.length = Time.new(5400)
     film.rating = -1
-    assert film.invalid?, true
+    assert film.valid?, true
   end
 end
