@@ -1,3 +1,9 @@
+class ReleaseDateValidator < ActiveModel::Validator 
+    def validate(videogame)
+        if videogame.release_date > Time.now
+            videogame.errors[:release_date] << "can't be > than now"
+    end
+end
 class Videogame < ApplicationRecord
     validates :title, presence: true
     validates :platform, presence: true

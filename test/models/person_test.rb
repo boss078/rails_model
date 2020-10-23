@@ -12,10 +12,10 @@ class PersonTest < ActiveSupport::TestCase
   end
   test 'person_invalid' do
     person = Person.new
-    person.name = "Oldest man"
-    person.surname = "In th universe"
+    person.name = "Kid"
+    person.surname = "Kid"
     person.age = 2000
-    person.date_of_birth = Time.new(2000, 10, 10)
+    person.date_of_birth = Time.new(2005, 10, 10)
     person.biography = "Something here"
     assert person.invalid?, true
   end
