@@ -6,7 +6,7 @@ class Person < ApplicationRecord
     validates :biography, presence: true, length: { maximum: 1000 }
 
     private
-    def ensure_model_is_set
+    def process_before_validation
         puts "This method happend before validation"
         name ||= "John"
         surname ||= "Smith"

@@ -5,7 +5,7 @@ class Product < ApplicationRecord
     validates :left_on_warehouse, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
     private
-    def ensure_model_is_set
+    def process_before_validation
         puts "This method happend before validation"
         description ||= title
     end

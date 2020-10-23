@@ -5,7 +5,7 @@ class Film < ApplicationRecord
     validates :rating, presence: true, numericality: { only_integer: true, greater_than_or_equal: 0, less_than_or_equal_to: 100 }
 
     private
-    def ensure_model_is_set
+    def process_before_validation
         puts "This method happend before validation"
         rating ||= 50
     end

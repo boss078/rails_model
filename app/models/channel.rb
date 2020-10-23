@@ -4,7 +4,7 @@ class Channel < ApplicationRecord
     validates :subscribers, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
     private
-    def ensure_model_is_set
+    def process_before_validation
         puts "This method happend before validation"
         streaming_platform ||= "Twetch"
     end

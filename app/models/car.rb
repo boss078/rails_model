@@ -6,7 +6,7 @@ class Car < ApplicationRecord
     before_validation :ensure_model_is_set
 
     private
-    def ensure_model_is_set
+    def process_before_validation
         puts "This method happend before validation"
         if model.nil?
             self.model = brand unless brand.nil?

@@ -5,7 +5,7 @@ class Videogame < ApplicationRecord
     validates :release_date, presence: true
 
     private
-    def ensure_model_is_set
+    def process_before_validation
         puts "This method happend before validation"
         platform ||= "PC"
     end
