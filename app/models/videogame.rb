@@ -3,6 +3,8 @@ class Videogame < ApplicationRecord
     validates :platform, presence: true
     validates :description, length: { maximum: 300 }
     validates :release_date, presence: true
+    before_validation :process_before_validation
+    after_validation :process_after_validation
 
     private
     def process_before_validation

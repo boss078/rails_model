@@ -4,6 +4,8 @@ class Person < ApplicationRecord
     validates :age, presence: true, numericality: { only_integer: true, greater_than: 0, less_than_or_equal_to: 150 }
     validates :date_of_birth, presence: true
     validates :biography, presence: true, length: { maximum: 1000 }
+    before_validation :process_before_validation
+    after_validation :process_after_validation
 
     private
     def process_before_validation

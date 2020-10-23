@@ -3,7 +3,8 @@ class Car < ApplicationRecord
     validates :model, presence: true
     validates :release_date, presence: true
     validates_format_of :license_plate, with: /./
-    before_validation :ensure_model_is_set
+    before_validation :process_before_validation
+    after_validation :process_after_validation
 
     private
     def process_before_validation
