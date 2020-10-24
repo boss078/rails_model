@@ -1,29 +1,29 @@
-class DateOfBirthValidator < ActiveModel::Validator
-    def validate(person)
-        puts "Inside custom validate"
-        if Time.now.year - person.date_of_birth.year < 18
-            person.errors[:date_of_birth] << "must be 18 or more years ago"
-        end
-    end
-end
+
 
 class Person < ApplicationRecord
     validates :name, presence: true
     validates :surname, presence: true
     validates :age, presence: true, numericality: { only_integer: true, greater_than: 0, less_than_or_equal_to: 150 }
     validates :biography, presence: true, length: { maximum: 1000 }
-    validates_with DateOfBirthValidator
+    validate :must_be_18_years_old
     before_validation :process_before_validation
     after_validation :process_after_validation
     
 
     private
+    def must_be_18_years_old
+        if Time.now.year - date_of_birth.year < 18
+            errors[:date_of_birth] << 'must be 18 or more years ago'
+        end
+        if age < 18
+            errors[:age] << 'must be at least 18'
+        end
+    end
     def process_before_validation
-        puts "This method happend before validation"
-        name ||= "John"
-        surname ||= "Smith"
+        self.name ||= 'John'
+        self.surname ||= 'Smith'
     end
     def process_after_validation
-        puts "This method happend after validation"
+        puts 'Validation complete!'
     end
 end

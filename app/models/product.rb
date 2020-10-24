@@ -7,14 +7,12 @@ class Product < ApplicationRecord
 
     private
     def process_before_validation
-        puts "This method happend before validation"
-        if description == ""
-            description = title
-        end
-        price ||= 5.0
-        left_on_warehouse ||= 0
+        puts 'This method happend before validation'
+        self.description ||= title
+        self.price ||= 5.0
+        self.left_on_warehouse ||= 0
     end
     def process_after_validation
-        puts "This method happend after validation"
+        puts 'This method happend after validation'
     end
 end
