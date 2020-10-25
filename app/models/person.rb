@@ -24,6 +24,6 @@ class Person < ApplicationRecord
         self.surname ||= 'Smith'
     end
     def process_after_validation
-        puts 'Validation complete!'
+        puts 'This method happend after validation'
     end
 end

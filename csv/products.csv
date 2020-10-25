@@ -1,0 +1,5 @@
+title,description,price,left_on_warehouse
+Valid Title,description,5.45,6
+Valid Title And Description,,7,1
+Invalid Product,,-7,1
+Invalid Product,,7,-1

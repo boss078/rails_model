@@ -1,3 +1,5 @@
+require 'csv'
+
 def create_person(name, surname, age, date_of_birth, biography)
     person = Person.new ({
         name: name,
@@ -51,6 +53,18 @@ def create_car(brand, model, release_date, license_plate)
         puts car.errors.full_messages.each { |msg| "Message: #{msg}"}
     end
 end
+def create_objects_from_csv(csv_filename, target_class)
+    csv_text = File.read(csv_filename)
+    csv_obj = CSV.parse(csv_text, :headers => true)
+    csv_obj.each do |row|
+        #puts row.to_hash
+        errors = target_class.create(row.to_hash).errors.full_messages
+        unless errors.empty?
+            puts 'Error happend while saving'
+            errors.each { |e| puts "Error: #{e}" }
+        end
+    end
+end
 
 def print_all_from_table(table)
     puts '~~~~~~~~~~~~~~~~~~~~~~'
@@ -78,6 +92,8 @@ create_person('John', 'Smith', -58, Time.new(2000, 10, 10), 'Sample biography')
 puts 'Creating person with wrong date of birth and trying to save to the db'
 create_person('John', 'Smith', 18, Time.new(2015, 10, 10), 'Sample biography')
 
+print_all_from_table('people')
+
 puts 'Creating valid product and saving to the db'
 create_product('Unit1', 'This is product with description', 10, 3)
 
@@ -90,11 +106,15 @@ create_product('Unit2', 'This is product with description', -10, 3)
 puts 'Creating product with negative amount on the warehouse and trying to save it to the db'
 create_product('Unit3', 'This is product with description', 15, -53)
 
+print_all_from_table('products')
+
 puts 'Creating valid videogame and saving to the db'
 create_videogame('CoolTitle', 'PC', 'cool description', Time.new(2020, 10, 10))
 
 puts 'Creating videogame with invalid release date and trying to save it to the db'
 create_videogame('CoolTitle', 'PC', 'cool description', Time.new(2021, 10, 10))
+
+print_all_from_table('videogames')
 
 puts 'Creating valid car and saving to the db'
 create_car('Lada', 'X-Wing', Time.new(2020, 1, 1), '2323 KK-07')
@@ -108,7 +128,21 @@ create_car('Lada', '$-Wing', Time.new(2020, 1, 1), '$$$$ ZZ-00')
 puts 'Creating car with invalid release date and saving to the db'
 create_car('Lada', '$-Wing', Time.new(2030, 1, 1), '2323 ZZ-00')
 
+print_all_from_table('cars')
+
+clear_table('people')
+clear_table('products')
+clear_table('videogames')
+clear_table('cars')
+
+create_objects_from_csv('csv/people.csv', Person)
 print_all_from_table('people')
+
+create_objects_from_csv('csv/products.csv', Product)
 print_all_from_table('products')
+
+create_objects_from_csv('csv/videogames.csv', Videogame)
 print_all_from_table('videogames')
+
+create_objects_from_csv('csv/cars.csv', Car)
 print_all_from_table('cars')
