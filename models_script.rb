@@ -55,7 +55,7 @@ def create_car(brand, model, release_date, license_plate)
 end
 def create_objects_from_csv(csv_filename, target_class)
     csv_text = File.read(csv_filename)
-    csv_obj = CSV.parse(csv_text, :headers => true)
+    csv_obj = CSV.parse(csv_text, headers: true)
     csv_obj.each do |row|
         #puts row.to_hash
         errors = target_class.create(row.to_hash).errors.full_messages
